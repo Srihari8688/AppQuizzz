@@ -5,71 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz App</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="./css/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/output.css">
+  <link rel="stylesheet" href="/src/App.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-      
-      <!-- Timer Display -->
-      <div class="flex justify-between items-center mb-4">
-        <h2 id="timer" class="text-red-500 font-bold">Time: 30s</h2>
+  <!-- Welcome Screen -->
+  <section id="welcome-screen" class="flex flex-col items-center justify-center h-screen">
+    <h1 class="text-4xl font-bold mb-4">Welcome to the Quiz App</h1>
+    <p class="text-lg text-gray-600 mb-6">Test your knowledge in this fun quiz!</p>
+    <button onclick="startQuiz()" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">Start Quiz</button>
+  </section>
+
+  <!-- Quiz Section -->
+  <section id="quiz-section" class="hidden flex flex-col items-center justify-center h-screen">
+    <div class="w-full max-w-xl p-8 bg-white rounded-lg shadow-lg">
+      <h2 id="question" class="text-2xl font-semibold">Question goes here</h2>
+      <div id="options" class="flex flex-col space-y-3 mt-4">
+        <!-- Options will be added here using JS -->
       </div>
-  
-      <!-- Question Section -->
-      <h1 id="question" class="text-2xl font-semibold text-gray-800 mb-6">1.What is the capital of France?</h1>
+      <button onclick="prevQuestion()" class="mt-6 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 previous">Prev</button>
+      <button onclick="nextQuestion()" class="mt-6 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 next  ">Next</button>
       
-      <!-- Options Section -->
-      <div id="options" class="space-y-4">
-        <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Paris</button>
-        <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">London</button>
-        <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Berlin</button>
-        <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Rome</button>
-      </div>
-      <!-- Next Button -->
-      <button class="w-full p-4 bg-green-500 text-white font-semibold rounded-lg mt-6 hover:bg-green-600">Next</button>
-      <h1 id="question" class="text-2xl font-semibold text-gray-800 mb-6">2.Which continent is the Sahara Desert located in?</h1>
-<div id="options" class="space-y-4">
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Asia</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Africa</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">South America</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Australia</button>
-</div>
-<!-- Next Button -->
-<button class="w-full p-4 bg-green-500 text-white font-semibold rounded-lg mt-6 hover:bg-green-600">Next</button>
-<br>
-<h1 id="question" class="text-2xl font-semibold text-gray-800 mb-6">3.What is the chemical symbol for water?</h1>
-<div id="options" class="space-y-4">
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">H2O</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">O2</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">CO2</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">NaCl</button>
-</div>
-<!-- Next Button -->
-<button class="w-full p-4 bg-green-500 text-white font-semibold rounded-lg mt-6 hover:bg-green-600">Next</button>
-<br>
-<h1 id="question" class="text-2xl font-semibold text-gray-800 mb-6">4. What is the powerhouse of the cell?</h1>
-<div id="options" class="space-y-4">
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Mitochondria</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Nucleus</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Ribosome</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">Endoplasmic Reticulum</button>
-</div>
-<!-- Next Button -->
-<button class="w-full p-4 bg-green-500 text-white font-semibold rounded-lg mt-6 hover:bg-green-600">Next</button>
-<h1 id="question" class="text-2xl font-semibold text-gray-800 mb-6">5. What is the speed of light?</h1>
-<div id="options" class="space-y-4">
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">299,792,458 m/s</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">150,000,000 m/s</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">3,000,000 m/s</button>
-  <button class="w-full p-4 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300">1,080,000,000 m/s</button>
-</div>
-<!-- Next Button -->
-<button class="w-full p-4 bg-green-500 text-white font-semibold rounded-lg mt-6 hover:bg-green-600">Next</button>
     </div>
-  </div>
-  
+    
+      
+    
+    <!-- Progress Bar -->
+    <div class="w-full max-w-xl mt-4 bg-gray-300">
+      <div id="progress" class="h-4 bg-blue-500 w-0"></div>
+    </div>
+
+    <!-- Timer -->
+    <div class="text-xl font-semibold mt-4">Time Left: <span id="time">30</span> sec</div>
+  </section>
+
+  <!-- Results Screen -->
+  <section id="result-screen" class="hidden flex flex-col items-center justify-center h-screen">
+    <h2 class="text-4xl font-bold mb-4">Quiz Completed!</h2>
+    <p class="text-xl mb-4">Your Score: <span id="score">0</span></p>
+    <button onclick="restartQuiz()" class="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600">Restart Quiz</button>
+  </section>
 
   <!-- JavaScript -->
   <script src="js/script.js"></script>
